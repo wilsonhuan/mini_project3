@@ -1,7 +1,7 @@
 #include <cstdlib>
 
 #include "../state/state.hpp"
-#include "./random.hpp"
+#include "./random2.hpp"
 
 
 /**
