@@ -13,7 +13,36 @@
  */
 int State::evaluate(){
   // [TODO] design your own evaluation function
-  return 0;
+  int score = 0;
+  for(int i = 0; i < 6 ; i++){
+    for(int j = 0; j < 5; j++){
+      switch(board.board[0][i][j]){
+        case 0:
+          break;
+        case 1:
+          score += 1;
+          break;
+        case 2:
+          score += 4;
+          break;
+        case 3:
+          score += 3;
+          break;
+        case 4:
+          score += 5;
+          break;
+        case 5:
+          score += 9;
+          break;
+        case 6:
+          score += 10000;
+          break;
+        default:
+          break;
+      }
+    }
+  }
+  return score;
 }
 
 
