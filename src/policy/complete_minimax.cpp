@@ -15,14 +15,42 @@ Move Minimax_complete::get_move(State *state, int depth){
     if(!state->legal_actions.size())
         state->get_legal_actions();
     auto actions = state->legal_actions;
-    int index = 0;
-    int max = 0;
-    for (int i = 0; i < (int)state->legal_actions.size(); i++){
-        int value = state->next_state(actions[i])->evaluate(state->player, depth);
+    int index=0;
+    int max=-100000;
+    for(int i=0;i<actions.size();i++){
+        auto value = find_value(state,depth-1,true);
         if(value > max){
             max = value;
             index = i;
         }
     }
     return actions[index];
+}
+int Minimax_complete::find_value(State* state, int depth, bool max){
+    if(depth == 0){
+        int value = state->evaluate(state->player);
+        return value;
+    }
+    else if(max){
+        state->get_legal_actions();
+        int value = -100000;
+        for(int i=0; i<state->legal_actions.size(); i++){
+            auto nextvalue = find_value(state->next_state(state->legal_actions[i]), depth-1, false);
+            if(nextvalue > value){
+                value = nextvalue;
+                return value;
+            }
+        }
+    }
+    else{
+        state->get_legal_actions();
+        int value = 100000;
+        for(int i=0; i<state->legal_actions.size(); i++){
+            auto nextvalue = find_value(state->next_state(state->legal_actions[i]), depth-1, true);
+            if(nextvalue < value){
+                value = nextvalue;
+                return value;
+            }
+        }
+    }
 }

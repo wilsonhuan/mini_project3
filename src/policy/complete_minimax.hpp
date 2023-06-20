@@ -9,4 +9,5 @@
 class Minimax_complete{
 public:
     static Move get_move(State *state, int depth);
+    static int find_value(State* state, int depth, bool max);
 };
