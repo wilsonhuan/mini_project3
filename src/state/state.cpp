@@ -14,55 +14,16 @@
 int State::evaluate(int player){
   // [TODO] design your own evaluation function
   int score = 0;
+  int value[7] = {0,1,4,3,5,20,100};
   for(int i = 0; i < 6 ; i++){
     for(int j = 0; j < 5; j++){
-      switch(this->board.board[player][i][j]){
-        case 0:
-          break;
-        case 1:
-          score += 1;
-          break;
-        case 2:
-          score += 4;
-          break;
-        case 3:
-          score += 3;
-          break;
-        case 4:
-          score += 5;
-          break;
-        case 5:
-          score += 9;
-          break;
-        case 6:
-          score += 10000;
-          break;
-        default:
-          break;
+      int now_piece = this->board.board[player][i][j];
+      if(now_piece){
+        score -= value[now_piece];
       }
-      switch(this->board.board[1-player][i][j]){
-        case 0:
-          break;
-        case 1:
-          score -= 1;
-          break;
-        case 2:
-          score -= 4;
-          break;
-        case 3:
-          score -= 3;
-          break;
-        case 4:
-          score -= 5;
-          break;
-        case 5:
-          score -= 9;
-          break;
-        case 6:
-          score -= 10000;
-          break;
-        default:
-          break;
+      now_piece = this->board.board[1-player][i][j];
+      if(now_piece){
+        score += value[now_piece];
       }
     }
   }
