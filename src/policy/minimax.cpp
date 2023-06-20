@@ -1,7 +1,7 @@
 #include <cstdlib>
 
 #include "../state/state.hpp"
-#include "./complete_minimax.hpp"
+#include "./minimax.hpp"
 
 
 /**
@@ -11,7 +11,7 @@
  * @param depth You may need this for other policy
  * @return Move 
  */
-Move Minimax_complete::get_move(State *state, int depth){
+Move Minimax::get_move(State *state, int depth){
     if(state->legal_actions.empty())state->get_legal_actions();
     auto actions = state->legal_actions;
     int index=0;
@@ -25,7 +25,7 @@ Move Minimax_complete::get_move(State *state, int depth){
     }
     return actions[index];
 }
-int Minimax_complete::find_value(State* state, int depth, bool max){
+int Minimax::find_value(State* state, int depth, bool max){
     state->get_legal_actions();
     if(depth == 0 || state->legal_actions.size() == 0){
         int value = state->evaluate(state->player);
