@@ -1,7 +1,7 @@
 #include <cstdlib>
 
 #include "../state/state.hpp"
-#include "./minimax.hpp"
+#include "./complete_minimax.hpp"
 
 
 /**
@@ -11,7 +11,7 @@
  * @param depth You may need this for other policy
  * @return Move 
  */
-Move Minimax::get_move(State *state, int depth){
+Move Minimax_complete::get_move(State *state, int depth){
     if(!state->legal_actions.size())
         state->get_legal_actions();
     auto actions = state->legal_actions;
