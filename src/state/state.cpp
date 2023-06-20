@@ -11,12 +11,12 @@
  * 
  * @return int 
  */
-int State::evaluate(){
+int State::evaluate(int player){
   // [TODO] design your own evaluation function
   int score = 0;
   for(int i = 0; i < 6 ; i++){
     for(int j = 0; j < 5; j++){
-      switch(board.board[0][i][j]){
+      switch(board.board[player][i][j]){
         case 0:
           break;
         case 1:
