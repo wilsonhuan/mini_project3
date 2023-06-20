@@ -40,8 +40,8 @@ int abpruning::find_value(State* state, int depth, int alpha, int beta, bool max
             if(nextvalue >= value){
                 value = nextvalue;
             }
-            if(value > alpha_){
-                alpha_ = value;
+            if(nextvalue > alpha_){
+                alpha_ = nextvalue;
             }
             if(alpha_ >= beta_){
                 break;
@@ -56,8 +56,8 @@ int abpruning::find_value(State* state, int depth, int alpha, int beta, bool max
             if(nextvalue <= value){
                 value = nextvalue;
             }
-            if(beta_ < value){
-                beta_ = value;
+            if(beta_ < nextvalue){
+                beta_ = nextvalue;
             }
             if(alpha_ >= beta_){
                 break;
