@@ -19,11 +19,11 @@ int State::evaluate(int player){
     for(int j = 0; j < 5; j++){
       int now = this->board.board[player][i][j];
       if(now){
-        score -= value[now];
+        score += value[now];
       }
       now = this->board.board[1-player][i][j];
       if(now){
-        score += value[now];
+        score -= value[now];
       }
     }
   }
