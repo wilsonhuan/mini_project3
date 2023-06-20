@@ -72,6 +72,7 @@ int State::evaluate(int player, int depth){
   else{
     int max,index;
     for(int i=0; i<(int)this->legal_actions.size(); i++){
+      this->get_legal_actions();
       int value=this->next_state(legal_actions[i])->evaluate(player, depth-1);
       if(value>max){
         max = value;
