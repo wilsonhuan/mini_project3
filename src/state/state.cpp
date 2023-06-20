@@ -11,38 +11,75 @@
  * 
  * @return int 
  */
-int State::evaluate(int player){
+int State::evaluate(int player, int depth){
   // [TODO] design your own evaluation function
-  int score = 0;
-  for(int i = 0; i < 6 ; i++){
-    for(int j = 0; j < 5; j++){
-      switch(board.board[player][i][j]){
-        case 0:
-          break;
-        case 1:
-          score += 1;
-          break;
-        case 2:
-          score += 4;
-          break;
-        case 3:
-          score += 3;
-          break;
-        case 4:
-          score += 5;
-          break;
-        case 5:
-          score += 9;
-          break;
-        case 6:
-          score += 10000;
-          break;
-        default:
-          break;
+  if(depth == 0){
+    int score = 0;
+    for(int i = 0; i < 6 ; i++){
+      for(int j = 0; j < 5; j++){
+        switch(this->board.board[player][i][j]){
+          case 0:
+            break;
+          case 1:
+            score += 1;
+            break;
+          case 2:
+            score += 4;
+            break;
+          case 3:
+            score += 3;
+            break;
+          case 4:
+            score += 5;
+            break;
+          case 5:
+            score += 9;
+            break;
+          case 6:
+            score += 10000;
+            break;
+          default:
+            break;
+        }
+        switch(this->board.board[1-player][i][j]){
+          case 0:
+            break;
+          case 1:
+            score -= 1;
+            break;
+          case 2:
+            score -= 4;
+            break;
+          case 3:
+            score -= 3;
+            break;
+          case 4:
+            score -= 5;
+            break;
+          case 5:
+            score -= 9;
+            break;
+          case 6:
+            score -= 10000;
+            break;
+          default:
+            break;
+        }
       }
     }
+    return score;    
   }
-  return score;
+  else{
+    int max,index;
+    for(int i=0; i<(int)this->legal_actions.size(); i++){
+      int value=this->next_state(legal_actions[i])->evaluate(player, depth-1);
+      if(value>max){
+        max = value;
+        index = i;
+      }
+    }
+    return max;
+  }
 }
 
 

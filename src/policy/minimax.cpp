@@ -18,7 +18,7 @@ Move Minimax::get_move(State *state, int depth){
     int index = 0;
     int max = 0;
     for (int i = 0; i < (int)state->legal_actions.size(); i++){
-        int value = state->next_state(actions[i])->evaluate(state->player);
+        int value = state->next_state(actions[i])->evaluate(state->player, depth);
         if(value > max){
             max = value;
             index = i;
