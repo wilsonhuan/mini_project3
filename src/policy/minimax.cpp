@@ -35,7 +35,7 @@ int Minimax::find_value(State* state, int depth, bool max){
         int value = -100000;
         for(int i=0; i<(int)state->legal_actions.size(); i++){
             auto nextvalue = find_value(state->next_state(state->legal_actions[i]), depth-1, false);
-            if(nextvalue > value){
+            if(nextvalue >= value){
                 value = nextvalue;
             }
         }
@@ -45,7 +45,7 @@ int Minimax::find_value(State* state, int depth, bool max){
         int value = 100000;
         for(int i=0; i<(int)state->legal_actions.size(); i++){
             auto nextvalue = find_value(state->next_state(state->legal_actions[i]), depth-1, true);
-            if(nextvalue < value){
+            if(nextvalue <= value){
                 value = nextvalue;
             }
         }
