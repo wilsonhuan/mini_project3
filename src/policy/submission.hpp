@@ -6,7 +6,7 @@
  * @brief Policy class for random policy, 
  * your policy class should have get_move method
  */
-class abpruning{
+class submission{
 public:
     static Move get_move(State *state, int depth);
     static int find_value(State* state, int depth, int alpha, int beta, bool max);

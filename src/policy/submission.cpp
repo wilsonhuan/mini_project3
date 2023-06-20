@@ -1,7 +1,7 @@
 #include <cstdlib>
 
 #include "../state/state.hpp"
-#include "./abpruning.hpp"
+#include "./submission.hpp"
 
 
 /**
@@ -11,7 +11,7 @@
  * @param depth You may need this for other policy
  * @return Move 
  */
-Move abpruning::get_move(State *state, int depth){
+Move submission::get_move(State *state, int depth){
     if(state->legal_actions.empty())state->get_legal_actions();
     auto actions = state->legal_actions;
     int index=0;
@@ -25,7 +25,7 @@ Move abpruning::get_move(State *state, int depth){
     }
     return actions[index];
 }
-int abpruning::find_value(State* state, int depth, int alpha, int beta, bool max){
+int submission::find_value(State* state, int depth, int alpha, int beta, bool max){
     state->get_legal_actions();
     int alpha_ = alpha;
     int beta_ = beta;
